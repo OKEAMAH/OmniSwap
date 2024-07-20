@@ -14,7 +14,7 @@ bitarray==2.6.0
 black==24.3.0
 borsh-construct==0.1.0
 cachetools==4.2.4
-certifi==2023.7.22
+certifi==2024.7.4
 cffi==1.16.0
 charset-normalizer==2.1.1
 click==8.1.3
