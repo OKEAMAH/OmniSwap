@@ -87,7 +87,7 @@ def get_token_price():
         elif v["dstNet"] in ["bsc-main", "bsc-test"]:
             result[v["destinationDomain"]] = float(kucoin.fetch_ticker("BNB/USDT")['close'])
         elif v["dstNet"] in ["polygon-main", "polygon-test"]:
-            result[v["destinationDomain"]] = float(kucoin.fetch_ticker("MATIC/USDT")['close'])
+            result[v["destinationDomain"]] = float(kucoin.fetch_ticker("POL/USDT")['close'])
         elif v["dstNet"] in ["avax-main", "avax-test"]:
             result[v["destinationDomain"]] = float(kucoin.fetch_ticker("AVAX/USDT")['close'])
         else:
@@ -386,9 +386,9 @@ def process_v1(
                 else:
                     has_process[has_key] = time.time()
 
-                # if dst_storage[dst_domain].qsize() > 1000:
-                #     # Avoid mem leak
-                #     clear_queue(dst_storage[dst_domain])
+                if dst_storage[dst_domain].qsize() > 1000:
+                    # Avoid mem leak
+                    clear_queue(dst_storage[dst_domain])
 
                 dst_storage[dst_domain].put(data.to_dict())
                 local_logger.info(f"Put {dst_net} item for txid: {data.src_txid}")
